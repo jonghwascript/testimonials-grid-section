@@ -43,6 +43,7 @@ Users should be able to:
 - CSS custom properties
 - CSS Grid with `grid-template-areas`
 - Mobile-first workflow
+- Accessible design (visually hidden headings for screen readers)
 - Google Fonts (Barlow Semi Condensed)
 
 ### What I learned
@@ -125,6 +126,38 @@ Centralized color and typography management using CSS variables.
 ```
 
 This ensures long words break naturally instead of overflowing their containers.
+
+#### 5. Accessibility with Visually Hidden Headings
+
+Screen reader users navigate by landmarks and headings. Adding visually hidden headings improves accessibility without affecting visual design.
+
+```html
+<section class="testimonials-grid" aria-labelledby="testimonials-heading">
+  <h1 id="testimonials-heading" class="sr-only">Graduate Testimonials</h1>
+  <article class="testimonial">
+    <h2 class="sr-only">Testimonial from Daniel Clifford</h2>
+    <!-- content -->
+  </article>
+</section>
+```
+
+```css
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+```
+
+This pattern allows screen reader users to:
+- Identify the page topic via landmarks
+- Jump between testimonials using heading navigation (H key)
 
 ### Concepts I studied
 

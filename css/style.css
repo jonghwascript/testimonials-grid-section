@@ -53,6 +53,19 @@
   color: var(--grey-500);
 }
 
+/* Screen reader only - visually hidden but accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 *,
 *::before,
 *::after {
@@ -167,8 +180,8 @@ body {
 }
 
 /*############### Tablet ###############*/
-@media (min-width: 48rem) {
-  /* 1024px */
+@media (min-width: 768px) {
+  /* 786px */
   .testimonials-grid {
     width: min(40.4375rem, 100%);
     /* 647px */
