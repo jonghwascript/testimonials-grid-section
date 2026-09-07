@@ -69,6 +69,7 @@ body {
   flex-direction: column;
   height: 100vh;
   background-color: #f6f5f6;
+  /* body 자체에 마진이 존재한다*/
   margin: 0;
 }
 
@@ -79,10 +80,10 @@ body {
 }
 
 .testimonials-grid {
-  width: min(19.6875rem, 100%);
+  width: min(19.6875rem, 100%); /* 315px */
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 305px);
+  grid-template-columns: minmax(0, 19.0625rem); /* 305px*/
   gap: 2rem;
 }
 
@@ -167,8 +168,10 @@ body {
 
 /*############### Tablet ###############*/
 @media (min-width: 48rem) {
+  /* 1024px */
   .testimonials-grid {
     width: min(40.4375rem, 100%);
+    /* 647px */
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto;
     gap: 2rem;
@@ -206,8 +209,10 @@ body {
 
 /*############### desktop ###############*/
 @media (min-width: 64rem) {
+  /* 1024px */
   .testimonials-grid {
     width: min(69.625rem, 100%);
+    /* 1114px */
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto;
     row-gap: 1.5313rem;
