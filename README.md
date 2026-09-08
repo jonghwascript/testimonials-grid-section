@@ -159,6 +159,38 @@ This pattern allows screen reader users to:
 - Identify the page topic via landmarks
 - Jump between testimonials using heading navigation (H key)
 
+#### 6. Mobile Layout Fixes from Community Feedback
+
+**Issue 1: Content cut off on mobile**
+
+Using `height: 100vh` with `align-items: center` causes content to overflow equally top and bottom. The top overflow is unreachable by scrolling.
+
+```css
+/* Before: Fixed height clips content */
+body { height: 100vh; }
+
+/* After: Container grows with content */
+body { min-height: 100dvh; }
+```
+
+**Issue 2: Cards touching viewport edges**
+
+```css
+/* Before: No gutter on narrow screens */
+width: min(19.6875rem, 100%);
+
+/* After: 1.5rem gutter on each side */
+width: min(19.6875rem, 100% - 3rem);
+```
+
+**Issue 3: Color contrast on white cards (WCAG)**
+
+Kira's card used `--grey-300` (2.34:1 contrast) instead of `--grey-400` (4.5:1+). Fixed to match Jeanette's card.
+
+**Issue 4: Missing quotation mark on mobile**
+
+Moved `background-image` from tablet media query to base `.student1` rule so it appears on all screen sizes.
+
 ### Concepts I studied
 
 These are CSS Grid concepts I researched during this project but didn't implement in the final solution.
@@ -218,6 +250,35 @@ When cards have varying text lengths but you want consistent positioning (e.g., 
 
 This creates Pinterest-style layouts where smaller items fill empty spaces.
 
+#### BEM Modifiers vs Utility Classes for Theming
+
+Using utility classes like `.text-white` for each element requires manual updates across multiple elements when changing a card's theme, and risks color contrast mistakes.
+
+**Current approach (Utility Classes):**
+```html
+<article class="testimonial student1">
+  <span class="testimonial__name text-white">Daniel Clifford</span>
+  <span class="testimonial__category text-purple-50">Verified Graduate</span>
+</article>
+```
+
+**Better approach (BEM Modifiers):**
+```html
+<article class="testimonial testimonial--purple">
+  <span class="testimonial__name">Daniel Clifford</span>
+  <span class="testimonial__category">Verified Graduate</span>
+</article>
+```
+
+```css
+.testimonial--purple { background-color: var(--purple-500); }
+.testimonial--purple .testimonial__name { color: var(--white); }
+.testimonial--purple .testimonial__category { color: var(--purple-50); }
+.testimonial--purple .testimonial__avatar { border-color: var(--purple-300); }
+```
+
+**Benefits:** Changing a card's theme in one place automatically handles text contrast, borders, and icon fills.
+
 ### Continued development
 
 Areas I want to focus on in future projects:
@@ -225,6 +286,7 @@ Areas I want to focus on in future projects:
 - CSS Subgrid for aligning content across sibling elements
 - CSS Container Queries for component-based responsive design
 - Advanced `grid-template-areas` patterns
+- BEM modifiers for theme variations instead of utility classes
 
 ### Useful resources
 
