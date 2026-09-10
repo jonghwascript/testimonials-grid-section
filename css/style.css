@@ -80,9 +80,8 @@ p {
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100dvh;
   background-color: #f6f5f6;
-  /* body 자체에 마진이 존재한다*/
   margin: 0;
 }
 
